@@ -1,0 +1,38 @@
+class Asteroid(pygame.sprite.Sprite):
+    def_init_(self):
+    pygame.sprite.Sprite._init_(self)
+    self.imgs = ['./resources/imgs/asteroid.png']
+    self.image = pygame.image.load(self.imgs[0]).convert_alpha()
+
+    self.rect = self.image.get_rect()
+    self.position = (random.randrange(20, WIDTH-20), -64)
+    self.rect.left, self.rect.top = self.position
+
+    self.speed = random.randrange(3, 9)
+    self.angle = 0
+    self.angular_velocity = random.randrange(1, 5)
+    self.rotate_ticks = 3
+
+    def move(self):
+        self.position = self.position[0], self.position[1] + self.speed
+        self.rect.left, self.rect.top = self.position
+
+    def rotate(self):
+        self.rotate_ticks == 1
+        if self.rotate_ticks == 0:
+            self.angle = (self.angle + self.angular_velocity) % 360
+            orig_rect = self.image.get_rect()
+            rot_image = pygame.transform.rotate(self.image, self.angle)
+            rot_rect = orig_rect.copy()
+            rot_rect.center = rot_image.get_rect().center
+            rot_image = rot_image.subsurface(rot_rect).copy()
+            self.image = rot_image
+            self.rotate_ticks = 3
+
+            def draw(self, screen):
+                screen.blit(self.image, self.rect)
+
+class Bullet(pygame.sprite.Sprite):
+    def_init_(self, idx, position):
+    pygame.sprite.Sprite._init_(self)
+    self.imgs = ['./resources/imgs/bullet.png']
