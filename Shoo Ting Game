@@ -7,8 +7,10 @@ import pygame
 import random
 
 
-WIDTH = 956
-HEIGHT = 560
+WIDTH = 956    #게임화면 가로크기
+HEIGHT = 560   #게임화면 세로크기
+
+
 
 
 # 定义按钮
@@ -21,12 +23,12 @@ def BUTTON(screen, position, text):
 	pygame.draw.line(screen, (50, 50, 50), (left, top+bheight), (left+bwidth, top+bheight), 5)
 	pygame.draw.line(screen, (50, 50, 50), (left+bwidth, top+bheight), [left+bwidth, top], 5)
 	pygame.draw.rect(screen, (100, 100, 100), (left, top, bwidth, bheight))
-	font = pygame.font.Font('./resources/font/simkai.ttf', 50)
+	font = pygame.font.Font('./Administrator/assignment/pyshooting', 50)
 	text_render = font.render(text, 1, (255, 0, 0))
 	return screen.blit(text_render, (left+50, top+10))
 
 
-# 开始界面
+# 게임에 등장하는 객체를 드로잉
 def start_interface(screen):
 	clock = pygame.time.Clock()
 	while True:
@@ -42,7 +44,8 @@ def start_interface(screen):
 				elif button_2.collidepoint(pygame.mouse.get_pos()):
 					return 2
 		clock.tick(60)
-		pygame.display.update()
+
+		pygame.display.update() # 게임화면을 그리기
 
 
 # 子弹
